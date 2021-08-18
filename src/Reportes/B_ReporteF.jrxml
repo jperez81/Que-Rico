@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9ea7114b-f46f-44b3-8aec-de5c97ca88f2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="189"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="f_ini" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     reporte.`id` AS id,
+     reporte.`numero` AS numero,
+     reporte.`fecha` AS fecha,
+     reporte.`remito` AS remito,
+     reporte.`chofer` AS chofer,
+     reporte.`granja` AS granja,
+     reporte.`cargador` AS cargador,
+     reporte.`pollos` AS pollos,
+     reporte.`kilos` AS kilos,
+     reporte.`promedio` AS promedio,
+     reporte.`muertos` AS muertos,
+     reporte.`orden` AS orden
+FROM
+     `reporte` reporte
+
+WHERE
+	reporte.fecha BETWEEN $P{f_ini}  and $P{f_fin}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="numero" class="java.lang.String"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="remito" class="java.lang.String"/>
+	<field name="chofer" class="java.lang.String"/>
+	<field name="granja" class="java.lang.String"/>
+	<field name="cargador" class="java.lang.String"/>
+	<field name="pollos" class="java.lang.Integer"/>
+	<field name="kilos" class="java.lang.Integer"/>
+	<field name="promedio" class="java.lang.Double"/>
+	<field name="muertos" class="java.lang.Integer"/>
+	<field name="orden" class="java.lang.String"/>
+	<variable name="kilos" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{kilos}]]></variableExpression>
+	</variable>
+	<variable name="promedio" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{promedio}]]></variableExpression>
+	</variable>
+	<variable name="muertos" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{muertos}]]></variableExpression>
+	</variable>
+	<variable name="pollos" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{pollos}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="74" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="802" height="69" uuid="9778d0f3-313a-4ca3-a087-b42cece679a2"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="278" y="0" width="202" height="42" uuid="607ba721-562d-4b47-8371-daa5f505ac97"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="604" y="26" width="94" height="20" uuid="226fa597-fa35-4990-8b39-79180643f401"/>
+				<text><![CDATA[Carmen de Areco ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="604" y="0" width="106" height="16" uuid="2fd5c102-7cda-4a9c-be90-fe00d2ef5167"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUE RICO S.A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="6" width="176" height="20" uuid="034fe4ad-9818-454b-87fa-c7ebb4abc415"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE  BALANZA]]></text>
+			</staticText>
+			<image>
+				<reportElement x="710" y="0" width="89" height="66" uuid="edefb35c-d949-4c49-a0f0-5f816579286a"/>
+				<imageExpression><![CDATA["C:\\NetBeansProjects\\QueRico\\src\\Imagenes\\LogoReporte1.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="604" y="56" width="106" height="13" uuid="eb49679a-1fe7-48f1-9d88-4216fdbed83c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Buenos Aires - Argentina]]></text>
+			</staticText>
+			<line>
+				<reportElement x="377" y="42" width="1" height="27" uuid="62aaff9f-f090-435d-970c-65bfcd6df180"/>
+			</line>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="15" y="16" width="100" height="20" uuid="7f1aed8b-0271-469b-9b4d-bc929ec4e6d7"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="36" width="57" height="20" uuid="f8716fa1-f30e-4c59-88c7-fcafaaf5b5be"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="80" y="36" width="27" height="20" uuid="ae09f89a-e7a2-427d-b6ea-6b916bb61394"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="14" splitType="Stretch">
+			<staticText>
+				<reportElement x="217" y="0" width="61" height="13" uuid="a91a4eff-6c91-4077-902f-d88b20778f39"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Hasta el :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="0" width="121" height="13" uuid="b357436a-8ecf-4a91-8d12-75801c88c22c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Filtro aplicado  desde:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="122" y="0" width="71" height="13" uuid="00b0b888-23b8-4ab9-adcd-391ac9642eea"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{f_ini}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="0" width="100" height="13" uuid="37495918-0d59-4218-aaa1-6643415f9427"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{f_fin}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="4" width="802" height="29" uuid="06096f5f-cf8e-4812-952e-9c6edc25bdde"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="13" width="53" height="20" uuid="f1920807-d598-43fe-84e4-340efab34df7"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Numero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="58" y="13" width="57" height="20" uuid="42b604b8-b81e-4d27-9b65-7d8bf0114efd"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="13" width="56" height="20" uuid="d898ea9f-a4f4-4b16-9470-2476092f04d3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Remito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="171" y="13" width="82" height="20" uuid="8ff21229-b12e-4312-a728-e059aecd2233"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Chofer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="253" y="13" width="66" height="20" uuid="27bd62d4-cdf7-4a81-807f-3472fbc953c1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Granja]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="13" width="82" height="20" uuid="63d2ea7b-8aa3-4696-8bdd-4ddd1a3de6ca"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cargador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="13" width="69" height="20" uuid="2333a32d-f29a-4a7b-b4b4-dadeed46f6d0"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pollos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="492" y="13" width="73" height="20" uuid="e02d8d56-9cc0-40de-a0d8-d2de095a32c1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kilos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="577" y="13" width="68" height="20" uuid="b7cfa636-9b98-4d2d-b379-a6d9c2892ef8"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Promedio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="658" y="13" width="67" height="20" uuid="ee33bdd1-4799-4ba5-ac84-a693dd71ba13"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Muertos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="736" y="13" width="62" height="20" uuid="21c544ca-e022-4eaf-8333-f1488a5142ad"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[orden]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="5" y="0" width="53" height="20" uuid="d4f5cd1b-93ca-4796-a193-ab3ed9caf685"/>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="58" y="0" width="57" height="20" uuid="a4d18404-334c-42b4-aa22-791bcefb4c94"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="115" y="0" width="56" height="20" uuid="08fe56f4-6516-472c-99c4-0d695a5683f6"/>
+				<textFieldExpression><![CDATA[$F{remito}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="171" y="0" width="82" height="20" uuid="f467bff1-6ab5-4e29-97f0-d90cb33b72a7"/>
+				<textFieldExpression><![CDATA[$F{chofer}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="253" y="0" width="66" height="20" uuid="1ad038d0-fb48-4da3-be05-45908cdb8569"/>
+				<textFieldExpression><![CDATA[$F{granja}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="319" y="0" width="82" height="20" uuid="8ae5795c-abf5-4bd8-aab4-262e47dab839"/>
+				<textFieldExpression><![CDATA[$F{cargador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="411" y="0" width="69" height="20" uuid="9ad2856c-4c0c-476e-8448-628fc7a6b882"/>
+				<textFieldExpression><![CDATA[$F{pollos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="492" y="0" width="73" height="20" uuid="833ea234-ff27-444f-81cd-2d525e7663f0"/>
+				<textFieldExpression><![CDATA[$F{kilos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="577" y="0" width="27" height="20" uuid="727404c0-ed5e-43f4-9079-3e2c86f9c633"/>
+				<textFieldExpression><![CDATA[$F{promedio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="658" y="0" width="67" height="20" uuid="c60ea80a-e6ba-4cb6-9711-b82c4282bb0a"/>
+				<textFieldExpression><![CDATA[$F{muertos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="747" y="0" width="51" height="20" uuid="775dfde2-31a0-4d5f-924f-4f27acc9286e"/>
+				<textFieldExpression><![CDATA[$F{orden}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="2" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="802" height="23" uuid="47a5746b-e234-4798-bb7a-c6e5966d42aa"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="0" width="100" height="20" uuid="5bc50c1a-72ad-4aca-9dd6-a1cace997c03"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTALES = ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="502" y="0" width="43" height="20" uuid="b84ff8ff-ee2e-487c-b494-a13b6f2f8c28"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{kilos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="658" y="0" width="52" height="20" uuid="6005b062-040b-4b0d-9704-342fb6b8e293"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{muertos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="411" y="0" width="69" height="20" uuid="b0eea2b6-9f86-4e8e-915f-241ea909a021"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{pollos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="577" y="0" width="41" height="20" uuid="031f1022-ae5f-40e6-a18d-e7ce20c81468"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{kilos}.doubleValue() / $V{pollos}.doubleValue()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

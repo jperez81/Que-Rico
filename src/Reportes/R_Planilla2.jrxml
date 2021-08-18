@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="f_ini" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="orden" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="total" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     remito2.`id` AS id,
+     remito2.`numero` AS numero,
+     remito2.`fecha` AS fecha,
+     remito2.`hentrada` AS hentrada,
+     remito2.`tipo` AS tipo,
+     remito2.`chofer` AS chofer,
+     remito2.`remito` AS remito,
+     remito2.`patente` AS patente,
+     remito2.`granja` AS granja,
+     remito2.`cargador` AS cargador,
+     remito2.`pollos` AS pollos,
+     remito2.`pesobruto` AS pesobruto,
+     remito2.`tara` AS tara,
+     remito2.`pesoneto` AS pesoneto,
+     remito2.`promedio` AS promedio,
+     remito2.`muertos` AS muertos,
+     remito2.`galpon` AS galpon,
+     remito2.`pingreso` AS pingreso,
+     remito2.`pcajon` AS pcajon,
+     remito2.`orden` AS orden
+FROM
+     `remito2` remito2
+
+WHERE
+	remito2.fecha BETWEEN  $P{f_ini} and $P{f_fin}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="numero" class="java.lang.String"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="hentrada" class="java.lang.String"/>
+	<field name="tipo" class="java.lang.String"/>
+	<field name="chofer" class="java.lang.String"/>
+	<field name="remito" class="java.lang.String"/>
+	<field name="patente" class="java.lang.String"/>
+	<field name="granja" class="java.lang.String"/>
+	<field name="cargador" class="java.lang.String"/>
+	<field name="pollos" class="java.lang.Integer"/>
+	<field name="pesobruto" class="java.lang.String"/>
+	<field name="tara" class="java.lang.String"/>
+	<field name="pesoneto" class="java.lang.Integer"/>
+	<field name="promedio" class="java.lang.Double"/>
+	<field name="muertos" class="java.lang.Integer"/>
+	<field name="galpon" class="java.lang.String"/>
+	<field name="pingreso" class="java.lang.Double"/>
+	<field name="pcajon" class="java.lang.String"/>
+	<field name="orden" class="java.lang.String"/>
+	<variable name="muertos" class="java.lang.Integer" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{muertos}]]></variableExpression>
+	</variable>
+	<variable name="promedio" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{promedio}]]></variableExpression>
+	</variable>
+	<variable name="kilos" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{pesoneto}]]></variableExpression>
+	</variable>
+	<variable name="pollos" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{pollos}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="2" y="0" width="802" height="79"/>
+			</rectangle>
+			<textField>
+				<reportElement x="9" y="34" width="54" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="64" y="34" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="9" y="12" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="270" y="12" width="202" height="42"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="296" y="16" width="176" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE  BALANZA]]></text>
+			</staticText>
+			<image>
+				<reportElement x="713" y="3" width="89" height="63"/>
+				<imageExpression><![CDATA["C:\\NetBeansProjects\\QueRico\\src\\Imagenes\\LogoReporte1.jpg"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="368" y="54" width="1" height="25"/>
+			</line>
+			<staticText>
+				<reportElement x="596" y="0" width="106" height="16"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUE RICO S.A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="596" y="26" width="94" height="20"/>
+				<textElement/>
+				<text><![CDATA[Carmen de Areco ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="596" y="46" width="106" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Buenos Aires - Argentina]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="684" y="15" width="71" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="576" y="15" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Fecha de Reporte:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="15" width="121" height="20"/>
+				<textElement/>
+				<text><![CDATA[Filtro aplicado  desde:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="118" y="15" width="73" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{f_ini}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="191" y="15" width="61" height="20"/>
+				<textElement/>
+				<text><![CDATA[Hasta el :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="240" y="15" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{f_fin}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="802" height="30"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="10" width="38" height="20"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Numero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="10" width="51" height="20"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[H. Entrada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="10" width="48" height="20"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="142" y="10" width="65" height="20"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Chofer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="10" width="45" height="20"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Remito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="252" y="10" width="48" height="20"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Patente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="10" width="61" height="20"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Granja]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="10" width="68" height="20"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cargador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="576" y="10" width="47" height="20"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pollos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="10" width="37" height="20"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tara]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="623" y="10" width="47" height="20"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P. Neto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="676" y="10" width="50" height="20"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Promedio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="726" y="10" width="43" height="20"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Muertos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="769" y="10" width="33" height="20"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Orden]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="466" y="10" width="42" height="20"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pro. Ing]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="523" y="10" width="53" height="20"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P. Bruto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="5" y="0" width="33" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="0" width="51" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hentrada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="94" y="0" width="48" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="0" width="65" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{chofer}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="207" y="0" width="45" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remito}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="252" y="0" width="48" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{patente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="61" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{granja}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="0" width="68" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cargador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="576" y="0" width="47" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pollos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="429" y="0" width="37" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tara}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="623" y="0" width="47" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pesoneto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="676" y="0" width="26" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{promedio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="726" y="0" width="43" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{muertos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="769" y="0" width="33" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{orden}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="466" y="0" width="22" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pingreso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="523" y="0" width="53" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pesobruto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="32" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="405" y="12" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="12" width="54" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="32" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="3" width="802" height="29"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="9" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTALES = ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="726" y="9" width="43" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{muertos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="676" y="9" width="26" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{promedio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="626" y="9" width="44" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{kilos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="576" y="9" width="47" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{pollos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

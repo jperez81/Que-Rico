@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="105"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     remito3.`id` AS id,
+     remito3.`fecha` AS fecha,
+     remito3.`hora` AS hora,
+     remito3.`carga` AS carga,
+     remito3.`patente` AS patente,
+     remito3.`empresa` AS empresa,
+     remito3.`operador` AS operador,
+     remito3.`chofer` AS chofer,
+     remito3.`remito` AS remito,
+     remito3.`tara` AS tara,
+     remito3.`pesobrutoe` AS pesobrutoe,
+     remito3.`pesonetoe` AS pesonetoe,
+     remito3.`pesobrutos` AS pesobrutos,
+     remito3.`pesonetos` AS pesonetos
+FROM
+     `remito3` remito3
+WHERE 
+	remito3.id = $P{id}]]>
+	</queryString>
+	<field name="id" class="java.lang.String"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="hora" class="java.lang.String"/>
+	<field name="carga" class="java.lang.String"/>
+	<field name="patente" class="java.lang.String"/>
+	<field name="empresa" class="java.lang.String"/>
+	<field name="operador" class="java.lang.String"/>
+	<field name="chofer" class="java.lang.String"/>
+	<field name="remito" class="java.lang.String"/>
+	<field name="tara" class="java.lang.String"/>
+	<field name="pesobrutoe" class="java.lang.String"/>
+	<field name="pesonetoe" class="java.lang.String"/>
+	<field name="pesobrutos" class="java.lang.String"/>
+	<field name="pesonetos" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="81" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="802" height="79"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="278" y="10" width="202" height="42"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="604" y="56" width="106" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Buenos Aires - Argentina]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="604" y="10" width="106" height="16"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUE RICO S.A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="604" y="36" width="94" height="20"/>
+				<textElement/>
+				<text><![CDATA[Carmen de Areco ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="710" y="10" width="89" height="66"/>
+				<imageExpression><![CDATA["C:\\NetBeansProjects\\QueRico\\src\\Imagenes\\LogoReporte1.jpg"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="381" y="52" width="1" height="27"/>
+			</line>
+			<staticText>
+				<reportElement x="312" y="16" width="142" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORME POR ID ]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="11" y="16" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="36" width="65" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="76" y="36" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement x="11" y="14" width="119" height="20"/>
+				<textElement/>
+				<text><![CDATA[Numero de Solicitud :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="137" y="14" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="7" width="802" height="29"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="11" y="16" width="65" height="20"/>
+				<textElement/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="76" y="16" width="61" height="20"/>
+				<textElement/>
+				<text><![CDATA[Hora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="137" y="16" width="131" height="20"/>
+				<textElement/>
+				<text><![CDATA[Carga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="268" y="16" width="80" height="20"/>
+				<textElement/>
+				<text><![CDATA[Patente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="348" y="16" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Empresa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="448" y="16" width="84" height="20"/>
+				<textElement/>
+				<text><![CDATA[Operador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="532" y="16" width="86" height="20"/>
+				<textElement/>
+				<text><![CDATA[Chofer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="618" y="16" width="80" height="20"/>
+				<textElement/>
+				<text><![CDATA[Remito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="698" y="16" width="98" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tara]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="11" y="0" width="65" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="76" y="0" width="61" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="137" y="0" width="131" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{carga}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="268" y="0" width="80" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{patente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="348" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{empresa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="0" width="84" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{operador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="532" y="0" width="86" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{chofer}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="618" y="0" width="80" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{remito}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="698" y="0" width="98" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tara}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="65" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="13" width="802" height="52"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="11" y="13" width="79" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENTRADA :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="45" width="68" height="20"/>
+				<textElement/>
+				<text><![CDATA[Peso Bruto: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="45" width="100" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pesobrutoe}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="190" y="45" width="68" height="20"/>
+				<textElement/>
+				<text><![CDATA[Peso Neto : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="258" y="45" width="100" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pesonetoe}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="382" y="13" width="1" height="52"/>
+			</line>
+			<staticText>
+				<reportElement x="401" y="13" width="79" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SALIDA :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="605" y="45" width="68" height="20"/>
+				<textElement/>
+				<text><![CDATA[Peso Neto : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="437" y="45" width="68" height="20"/>
+				<textElement/>
+				<text><![CDATA[Peso Bruto: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="505" y="45" width="100" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pesobrutos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="673" y="45" width="100" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pesonetos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

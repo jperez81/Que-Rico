@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="105"/>
+	<property name="ireport.y" value="0"/>
+	<style name="alternativeRowColor">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></conditionExpression>
+			<style backcolor="#999999"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="f_ini" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="f_fin" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="estado" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     ordenesp.`ot` AS ot,
+     ordenesp.`solicitante` AS solicitante,
+     ordenesp.`fecha` AS fecha,
+     ordenesp.`sector` AS sector,
+     ordenesp.`detalle` AS detalle,
+     ordenesp.`prioridad` AS prioridad,
+     ordenesp.`estados` AS estados,
+     ordenesp.`f_inicio` AS f_inicio,
+     ordenesp.`sector_def` AS sector_def,
+     ordenesp.`materiales` AS materiales,
+     ordenesp.`obs_resp` AS obs_resp,
+     ordenesp.`estado` AS estado,
+     ordenesp.`f_cierre` AS f_cierre
+FROM
+     `ordenesp` ordenesp
+
+WHERE
+    ordenesp.estado = $P{estado} AND fecha BETWEEN $P{f_ini} and $P{f_fin}]]>
+	</queryString>
+	<field name="ot" class="java.lang.String"/>
+	<field name="solicitante" class="java.lang.String"/>
+	<field name="fecha" class="java.lang.String"/>
+	<field name="sector" class="java.lang.String"/>
+	<field name="detalle" class="java.lang.String"/>
+	<field name="prioridad" class="java.lang.String"/>
+	<field name="estados" class="java.lang.String"/>
+	<field name="f_inicio" class="java.lang.String"/>
+	<field name="sector_def" class="java.lang.String"/>
+	<field name="materiales" class="java.lang.String"/>
+	<field name="obs_resp" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="f_cierre" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="105" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="802" height="97"/>
+			</rectangle>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="672" y="31" width="112" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="293" y="0" width="215" height="57"/>
+			</rectangle>
+			<line>
+				<reportElement x="399" y="57" width="1" height="40"/>
+			</line>
+			<image>
+				<reportElement x="17" y="15" width="115" height="76"/>
+				<imageExpression><![CDATA["C:\\NetBeansProjects\\QueRico\\src\\Imagenes\\LogoReporte1.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="132" y="15" width="106" height="16"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUE RICO S.A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="132" y="37" width="165" height="20"/>
+				<textElement/>
+				<text><![CDATA[direccion de la planta (CP) ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="57" width="117" height="24"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Carmen de Areco -BA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="646" y="57" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="737" y="57" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="315" y="15" width="189" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE POR ESTADOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="77" width="123" height="20"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Listado por Estados:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="520" y="77" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="578" y="15" width="100" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Solicitado por :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="678" y="15" width="112" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="10" width="49" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{f_ini}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="10" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{f_fin}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="10" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[INFORME DESDE :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="10" width="63" height="20"/>
+				<textElement/>
+				<text><![CDATA[HASTA :]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="802" height="29"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="10" width="40" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Orden ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="9" width="59" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="99" y="9" width="74" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sector]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="9" width="185" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Detalle]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="478" y="9" width="83" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prioridad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="561" y="9" width="96" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Solicitud]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="657" y="9" width="89" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="173" y="9" width="56" height="20"/>
+				<textElement/>
+				<text><![CDATA[Inicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="229" y="9" width="64" height="20"/>
+				<textElement/>
+				<text><![CDATA[Cierre]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="56" splitType="Stretch">
+			<textField>
+				<reportElement style="alternativeRowColor" mode="Opaque" x="0" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ot}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="alternativeRowColor" mode="Opaque" x="40" y="0" width="60" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="alternativeRowColor" mode="Opaque" x="99" y="0" width="75" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{sector}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="alternativeRowColor" mode="Opaque" x="293" y="0" width="186" height="56"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{detalle}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="alternativeRowColor" mode="Opaque" x="478" y="0" width="83" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{prioridad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="alternativeRowColor" mode="Opaque" x="657" y="0" width="120" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{sector_def}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="777" y="0" width="25" height="20"/>
+			</rectangle>
+			<textField>
+				<reportElement style="alternativeRowColor" mode="Opaque" x="229" y="0" width="64" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{f_cierre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="alternativeRowColor" mode="Opaque" x="173" y="0" width="56" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{f_inicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="alternativeRowColor" mode="Opaque" x="561" y="0" width="96" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{estados}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="27" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="96" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="45" width="802" height="51"/>
+			</rectangle>
+			<textField>
+				<reportElement x="319" y="62" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="399" y="62" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="62" width="82" height="20"/>
+				<textElement/>
+				<text><![CDATA[Firma emisor :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="80" y="80" width="100" height="1"/>
+			</line>
+			<line>
+				<reportElement x="657" y="81" width="100" height="2"/>
+			</line>
+			<staticText>
+				<reportElement x="578" y="62" width="76" height="20"/>
+				<textElement/>
+				<text><![CDATA[Firma receptor :]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
