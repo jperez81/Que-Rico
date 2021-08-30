@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Fomularios;
 
 import Metodos.MetodosSql;
@@ -14,15 +9,12 @@ import javax.swing.JOptionPane;
  */
 public class InicioSesion extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InicioSesion
-     */
     public InicioSesion() {
         initComponents();
 //        icon_Formulario();
         setLocationRelativeTo(null);
     }
-    
+
     MetodosSql Met = new MetodosSql();
 
     /**
@@ -256,9 +248,9 @@ public class InicioSesion extends javax.swing.JFrame {
 //        ImageIcon icon_Formulario = new ImageIcon(url);
 //        setIconImage(icon_Formulario.getImage());
 //    }
-    
+
     private void BtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEntrarActionPerformed
-           String busqueda_usuario = Met.BuscarUsuarioRegistrado(TxtUsuario.getText(), TxtContraseña.getText());
+        String busqueda_usuario = Met.BuscarUsuarioRegistrado(TxtUsuario.getText(), TxtContraseña.getText());
 
         if (TxtUsuario.getText().equals("root") && TxtContraseña.getText().equals("mora2017")) {
             JOptionPane.showMessageDialog(this, "Bienvenido AdminSoft");
@@ -284,14 +276,14 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnEntrarActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
-      System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_BtnSalirActionPerformed
 
     private void TxtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtUsuarioActionPerformed
 
-     public void ValidarUsuario() {
+    public void ValidarUsuario() {
 
         String pass;
         pass = String.valueOf(TxtContraseña.getPassword());
@@ -305,8 +297,7 @@ public class InicioSesion extends javax.swing.JFrame {
         }
 
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */

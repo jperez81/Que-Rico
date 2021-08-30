@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Fomularios;
 
 import Metodos.ConexionBD;
@@ -27,13 +22,13 @@ public class Entrada_Material extends javax.swing.JFrame {
         mostrarDatos();
         setLocationRelativeTo(null);
     }
-     MetodosSql Met = new MetodosSql();
+    MetodosSql Met = new MetodosSql();
     ConexionBD cc = new ConexionBD();
     Connection con = ConexionBD.conectar();
-    
+
     public void mostrarDatos() {
         //CON ESTE METODO MOSTRAMOS EL CONTENIDO DE LA TABLA
-        String[] titulos = {"ID","Codigo","Recibido","Fecha", "Producto", "Marca", "Modelo", "Serial", "UN Med.", "Estado", "Cantidad"};
+        String[] titulos = {"ID", "Codigo", "Recibido", "Fecha", "Producto", "Marca", "Modelo", "Serial", "UN Med.", "Estado", "Cantidad"};
         String[] registros = new String[11];
 
         DefaultTableModel modelo = new DefaultTableModel(null, titulos);
@@ -57,7 +52,6 @@ public class Entrada_Material extends javax.swing.JFrame {
                 registros[8] = rs.getString("un");
                 registros[9] = rs.getString("estado");
                 registros[10] = rs.getString("cantidad");
-                
 
                 modelo.addRow(registros);
 
@@ -69,7 +63,6 @@ public class Entrada_Material extends javax.swing.JFrame {
         }
 
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -229,13 +222,13 @@ public class Entrada_Material extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       NuevoIngreso ven = new NuevoIngreso();
-       ven.setVisible(true);
-               
+        NuevoIngreso ven = new NuevoIngreso();
+        ven.setVisible(true);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      mostrarDatos();
+        mostrarDatos();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

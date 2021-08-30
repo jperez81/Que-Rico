@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Fomularios;
 
 import java.awt.CardLayout;
@@ -19,33 +14,23 @@ import javax.swing.SwingUtilities;
 public class Portal extends javax.swing.JFrame {
 
 //    Panel_Reportes Reporte = new Panel_Reportes();
-    
-    
-   Panel_Pañol Pañol = new Panel_Pañol();
+    Panel_Pañol Pañol = new Panel_Pañol();
     Panel_Manteniento Mantenimiento = new Panel_Manteniento();
     Panel_Produccion Produccion = new Panel_Produccion();
     CardLayout vistac;
-   
-  
-    
-    
+
     public Portal() {
         initComponents();
-        
+
 //        icon_Formulario();
-        
-       
-        
         setLocationRelativeTo(null);
-        
+
         vistac = (CardLayout) pnl_vista_principal.getLayout();
         FechaActual();
         run();
-        this.setExtendedState(MAXIMIZED_BOTH);
-        
+        //this.setExtendedState(MAXIMIZED_BOTH);
 
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,7 +58,6 @@ public class Portal extends javax.swing.JFrame {
         JFecha = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Portal Que Rico");
@@ -188,7 +172,7 @@ public class Portal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BtnPañol, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BtnProduccion, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,8 +208,6 @@ public class Portal extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(204, 0, 0));
         jLabel4.setText("Version 1.0");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuario.png"))); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -237,13 +219,10 @@ public class Portal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LblNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LblNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JHora, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -251,11 +230,13 @@ public class Portal extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(JFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 295, Short.MAX_VALUE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pnl_vista_principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnl_vista_principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -264,9 +245,14 @@ public class Portal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnl_vista_principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnl_vista_principal, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(LblNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(JFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -276,28 +262,19 @@ public class Portal extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel4)))
-                        .addGap(0, 13, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(LblNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGap(12, 12, 12))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
-        setSize(new java.awt.Dimension(1050, 748));
+        setSize(new java.awt.Dimension(1236, 740));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarActionPerformed
 
         RegistroUsuarios ventana = new RegistroUsuarios();
-             ventana.setVisible(true);
+        ventana.setVisible(true);
 
-        
+
     }//GEN-LAST:event_BtnRegistrarActionPerformed
 //public void icon_Formulario() {
 //        //aca debemos importar la imagen de nuestra libreria 
@@ -307,7 +284,7 @@ public class Portal extends javax.swing.JFrame {
 //        ImageIcon icon_Formulario = new ImageIcon(url);
 //        setIconImage(icon_Formulario.getImage());
 //    }
-    
+
     public void FechaActual() { //Metodo para mostara la fecha 
 
         LocalDateTime ahora = LocalDateTime.now();
@@ -315,7 +292,7 @@ public class Portal extends javax.swing.JFrame {
         int mes = ahora.getMonthValue();
         int dia = ahora.getDayOfMonth();
 
-            JFecha.setText(dia + "/" + mes + "/" + año);
+        JFecha.setText(dia + "/" + mes + "/" + año);
     }
 
     public void run() { //Metodo con hilos para actualizar la hora
@@ -356,7 +333,7 @@ public class Portal extends javax.swing.JFrame {
             this.repaint();
             //ACTIVAMOS EL BOTON QUE PRESIONAMOS Y BLOQUEAMOS LOS DEMAS
             BtnPañol.setEnabled(false);
-            
+
 //            BtnReportes.setEnabled(false);
             BtnMantenimiento.setEnabled(false);
 
@@ -370,24 +347,24 @@ public class Portal extends javax.swing.JFrame {
             //Y ACTIVAMOS NUEVAMENTES LOS BOTONES Y DEVOLVEMOS EL COLOR AL BOTON 
             BtnPañol.setEnabled(true);
 //            BtnReportes.setEnabled(true);
-            
+
             BtnMantenimiento.setEnabled(true);
             BtnProduccion.setBackground(new Color(204, 204, 204));
 
         }
     }//GEN-LAST:event_BtnProduccionActionPerformed
- 
+
     private void BtnPañolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPañolActionPerformed
-            
+
         if (BtnPañol.isSelected()) {
 
-          pnl_vista_principal.add(Pañol, "Pañol");
+            pnl_vista_principal.add(Pañol, "Pañol");
             vistac.show(pnl_vista_principal, "Pañol");
             SwingUtilities.updateComponentTreeUI(this);
             this.repaint();
             //ACTIVAMOS EL BOTON QUE PRESIONAMOS Y BLOQUEAMOS LOS DEMAS
             BtnProduccion.setEnabled(false);
-        
+
 //            BtnReportes.setEnabled(false);
             BtnMantenimiento.setEnabled(false);
 
@@ -401,7 +378,7 @@ public class Portal extends javax.swing.JFrame {
             //Y ACTIVAMOS NUEVAMENTES LOS BOTONES Y DEVOLVEMOS EL COLOR AL BOTON 
             BtnProduccion.setEnabled(true);
 //            BtnReportes.setEnabled(true);
-     
+
             BtnMantenimiento.setEnabled(true);
             BtnPañol.setBackground(new Color(204, 204, 204));
 
@@ -423,7 +400,7 @@ public class Portal extends javax.swing.JFrame {
             this.repaint();
             //ACTIVAMOS EL BOTON QUE PRESIONAMOS Y BLOQUEAMOS LOS DEMAS
             BtnProduccion.setEnabled(false);
-            
+
 //            BtnReportes.setEnabled(false);
             BtnPañol.setEnabled(false);
 
@@ -437,7 +414,7 @@ public class Portal extends javax.swing.JFrame {
             //Y ACTIVAMOS NUEVAMENTES LOS BOTONES Y DEVOLVEMOS EL COLOR AL BOTON 
             BtnProduccion.setEnabled(true);
 //            BtnReportes.setEnabled(true);
-            
+
             BtnPañol.setEnabled(true);
             BtnMantenimiento.setBackground(new Color(204, 204, 204));
 
@@ -447,7 +424,7 @@ public class Portal extends javax.swing.JFrame {
     private void BtnaDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnaDesconectarActionPerformed
         String eti;
         eti = LblNombreP.getText();
-        JOptionPane.showMessageDialog(rootPane, "" +eti+ " se desconecto del sistema!");
+        JOptionPane.showMessageDialog(rootPane, "" + eti + " se desconecto del sistema!");
         InicioSesion ventana = new InicioSesion();
         ventana.setVisible(true);
         this.dispose();
@@ -505,7 +482,6 @@ public class Portal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel pnl_vista_principal;
     // End of variables declaration//GEN-END:variables

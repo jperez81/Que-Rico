@@ -1,10 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Fomularios;
- 
+
 import Metodos.ConexionBD;
 import Metodos.GenerarCodigos;
 import Metodos.MetodosSql;
@@ -27,9 +22,6 @@ import static Fomularios.Panel_Manteniento.TxtDetalle;
  */
 public class NuevoEgreso extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NuevoEgreso
-     */
     public NuevoEgreso() {
         initComponents();
         mostrarDatos();
@@ -54,7 +46,6 @@ public class NuevoEgreso extends javax.swing.JFrame {
 //      
 //        
 //    }
-
     public void limpiar() {
 
         TxtOt.setText("");
@@ -80,7 +71,6 @@ public class NuevoEgreso extends javax.swing.JFrame {
 //        }
 //
 //    }
-
 //    public void icon_Formulario() {
 //        //aca debemos importar la imagen de nuestra libreria 
 //
@@ -695,7 +685,7 @@ public class NuevoEgreso extends javax.swing.JFrame {
 //            
 
             DefaultTableModel modelo = (DefaultTableModel) JTEgreso.getModel();
-            
+
             int a = JTEgreso.getRowCount() - 1;
             int i;
             for (i = a; i >= 0; i--) {
@@ -703,10 +693,10 @@ public class NuevoEgreso extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
                 JOptionPane.showMessageDialog(null, "Esta ventana se cerrara automaticamente!");
-            this.dispose();
-          }
+                this.dispose();
+            }
         }
-        
+
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -747,9 +737,6 @@ public class NuevoEgreso extends javax.swing.JFrame {
 
     }
 
-   
-
-    
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.dispose();
@@ -791,7 +778,7 @@ public class NuevoEgreso extends javax.swing.JFrame {
         ven.mostrarDatos();
         Btnproduccion2.setEnabled(true);
         TxtRef.setEnabled(false);
-        
+
     }//GEN-LAST:event_BtnProduccionActionPerformed
 
     private void Btnproduccion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btnproduccion2ActionPerformed
@@ -818,15 +805,15 @@ public class NuevoEgreso extends javax.swing.JFrame {
                 modelo.removeRow(i);
 
                 JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
-                 JOptionPane.showMessageDialog(null, "Esta ventana se cerrara automaticamente!");
-                 this.dispose();
+                JOptionPane.showMessageDialog(null, "Esta ventana se cerrara automaticamente!");
+                this.dispose();
             }
 
         }
     }//GEN-LAST:event_Btnproduccion2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-         if ((TxtId.getText().equals("")) || (TxtFecha.getText().equals(""))) {
+        if ((TxtId.getText().equals("")) || (TxtFecha.getText().equals(""))) {
             JOptionPane.showMessageDialog(this, "Favor de llenar todos los campos!");
         } else {
             String capcod = "", capcan = "";
@@ -838,13 +825,11 @@ public class NuevoEgreso extends javax.swing.JFrame {
             }
 
             detalleengreso();
-            
-       
+
 //            limpiar();
 //            
-
             DefaultTableModel modelo = (DefaultTableModel) JTEgreso.getModel();
-            
+
             int a = JTEgreso.getRowCount() - 1;
             int i;
             for (i = a; i >= 0; i--) {
@@ -855,9 +840,8 @@ public class NuevoEgreso extends javax.swing.JFrame {
 //            this.dispose();
             }
             EgresoMatTabla ven = new EgresoMatTabla();
-        ven.setVisible(true);
-        codigos();
-            
+            ven.setVisible(true);
+            codigos();
 
         }
     }//GEN-LAST:event_jButton4ActionPerformed

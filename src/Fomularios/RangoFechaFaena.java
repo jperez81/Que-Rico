@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Fomularios;
 
 import Metodos.ConexionBD;
@@ -34,10 +29,10 @@ public class RangoFechaFaena extends javax.swing.JFrame {
     public RangoFechaFaena() {
         initComponents();
         setLocationRelativeTo(null);
-        
+
     }
-    
-     MetodosSql Met = new MetodosSql();
+
+    MetodosSql Met = new MetodosSql();
     ConexionBD cc = new ConexionBD();
     Connection con = ConexionBD.conectar();
 
@@ -269,14 +264,13 @@ public class RangoFechaFaena extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-          try {
+        try {
             String path = "C:\\NetBeansProjects\\QueRico\\src\\Reportes\\R_Faena.jasper";
 
             JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
             Map parametros = new HashMap();
 
             parametros.put("sector", jComboBox1.getSelectedItem().toString());
-
 
             Date fecha1 = jDateChooser1.getDate();
             SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
@@ -297,7 +291,7 @@ public class RangoFechaFaena extends javax.swing.JFrame {
         } catch (JRException ex) {
             Logger.getLogger(DetalleIngreso.class.getName()).log(Level.SEVERE, null, ex);
         }
-  
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
@@ -305,19 +299,19 @@ public class RangoFechaFaena extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
     private void RDImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RDImprimirActionPerformed
-    if(RDImprimir.isSelected()){
-    jComboBox1.setEnabled(false);
-    jButton1.setEnabled(false);
-    
-    }else{
-    jComboBox1.setEnabled(true);
-    jButton1.setEnabled(true);
-    
-    }
+        if (RDImprimir.isSelected()) {
+            jComboBox1.setEnabled(false);
+            jButton1.setEnabled(false);
+
+        } else {
+            jComboBox1.setEnabled(true);
+            jButton1.setEnabled(true);
+
+        }
     }//GEN-LAST:event_RDImprimirActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       try {
+        try {
             String path = "C:\\NetBeansProjects\\QueRico\\src\\Reportes\\R_FaenaTodo.jasper";
 
             JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(path);

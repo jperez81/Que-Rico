@@ -1,4 +1,3 @@
-
 package Fomularios;
 
 import static Fomularios.IngresoMatTabla.JTPañol;
@@ -318,7 +317,7 @@ public class EgresoMatTabla extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Ud. no cuenta con el stock apropiado");
                     } else {
                         for (int i = 0; i < NuevoEgreso.JTEgreso.getRowCount(); i++) {
-                          
+
                             Object com = NuevoEgreso.JTEgreso.getValueAt(i, 0);
                             if (cod.equals(com)) {
                                 j = i;
@@ -330,7 +329,6 @@ public class EgresoMatTabla extends javax.swing.JFrame {
                         }
                         if (c == 0) {
 
-                           
                             dato[0] = cod;
                             dato[1] = retira;
                             dato[2] = sector;
@@ -344,10 +342,8 @@ public class EgresoMatTabla extends javax.swing.JFrame {
                             tabladet.addRow(dato);
 
                             NuevoEgreso.JTEgreso.setModel(tabladet);
-                            
-                                 NuevoEgreso.TxtMateriales.append(" Producto:" + producto + ", Marca: " + marca + ", Medida: " + medida + ", Cantidad " + cant + "\n");
-                            
-                            
+
+                            NuevoEgreso.TxtMateriales.append(" Producto:" + producto + ", Marca: " + marca + ", Medida: " + medida + ", Cantidad " + cant + "\n");
 
                         }
                     }

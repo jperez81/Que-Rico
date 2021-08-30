@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Fomularios;
 
 import Metodos.ConexionBD;
@@ -31,7 +26,6 @@ public class TratamientoOT extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         mostrarDatos();
         TrabajoCerrado1();
-       
 
     }
 
@@ -42,7 +36,7 @@ public class TratamientoOT extends javax.swing.JFrame {
     public void TrabajoCerrado1() {
 
         JTOt.getColumnModel().getColumn(6).setCellRenderer(new ViajeCerrado());
-      
+
     }
 
     public void mostrarDatos() {
@@ -73,9 +67,9 @@ public class TratamientoOT extends javax.swing.JFrame {
             }
             JTOt.setModel(modelo);
             TrabajoCerrado1();
-         
+
             {
-            
+
             }
 
         } catch (Exception e) {
@@ -347,44 +341,43 @@ public class TratamientoOT extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-     
-        if(jCheckBox1.isSelected()){
-        
-             String consulta = "";
-             
-             consulta = "SELECT * FROM querico.ordenes WHERE estado='Solicitada'";
-             String[] titulos = {"Num OT", "Solicitante", "Fecha", "Sector", "Detalle trabajo", "Prioridad", "Solicitud"};
+
+        if (jCheckBox1.isSelected()) {
+
+            String consulta = "";
+
+            consulta = "SELECT * FROM querico.ordenes WHERE estado='Solicitada'";
+            String[] titulos = {"Num OT", "Solicitante", "Fecha", "Sector", "Detalle trabajo", "Prioridad", "Solicitud"};
             String[] registros = new String[7];
 
-        DefaultTableModel modelo = new DefaultTableModel(null, titulos);
+            DefaultTableModel modelo = new DefaultTableModel(null, titulos);
 
+            try {
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(consulta);
 
-        try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(consulta);
+                while (rs.next()) {
 
-            while (rs.next()) {
+                    registros[0] = rs.getString("ot");
+                    registros[1] = rs.getString("solicitante");
+                    registros[2] = rs.getString("fecha");
+                    registros[3] = rs.getString("sector");
+                    registros[4] = rs.getString("detalle");
+                    registros[5] = rs.getString("prioridad");
+                    registros[6] = rs.getString("estado");
 
-                registros[0] = rs.getString("ot");
-                registros[1] = rs.getString("solicitante");
-                registros[2] = rs.getString("fecha");
-                registros[3] = rs.getString("sector");
-                registros[4] = rs.getString("detalle");
-                registros[5] = rs.getString("prioridad");
-                registros[6] = rs.getString("estado");
+                    modelo.addRow(registros);
 
-                modelo.addRow(registros);
+                }
+                JTOt.setModel(modelo);
+                TrabajoCerrado1();
 
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al monstrar el mensaje" + e);
             }
-            JTOt.setModel(modelo);
-            TrabajoCerrado1();
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al monstrar el mensaje" + e);
-        }
-        
-        }else{
-        mostrarDatos();
+        } else {
+            mostrarDatos();
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Fomularios;
 
 import static Fomularios.EgresoMatTabla.JTPañol;
@@ -34,7 +29,7 @@ public class IngresoMatTabla extends javax.swing.JFrame {
 //        icon_Formulario();
         setLocationRelativeTo(null);
     }
-    
+
 //    public void icon_Formulario() {
 //        //aca debemos importar la imagen de nuestra libreria 
 //
@@ -43,7 +38,6 @@ public class IngresoMatTabla extends javax.swing.JFrame {
 //        ImageIcon icon_Formulario = new ImageIcon(url);
 //        setIconImage(icon_Formulario.getImage());
 //    }
-
     MetodosSql Met = new MetodosSql();
     ConexionBD cc = new ConexionBD();
     Connection con = ConexionBD.conectar();
@@ -63,7 +57,7 @@ public class IngresoMatTabla extends javax.swing.JFrame {
         return cant;
 
     }
-    
+
     public void FiltrarDatos(String valor) {
         //CON ESTE METODO PODEMOS FLITRAR BUSQUEDAS ESPECIFICAS
         String[] titulos = {"Codigo", "Producto", "Marca", "Medida", "Unidad Med.", "Serial", "Estado", "Comentario", "Stock"};
@@ -103,7 +97,7 @@ public class IngresoMatTabla extends javax.swing.JFrame {
 
     public void mostrarDatos() {
         //CON ESTE METODO MOSTRAMOS EL CONTENIDO DE LA TABLA
-        String[] titulos = {"Codigo", "Producto", "Marca", "Medida", "Unidad Med.", "Serial", "Estado","Comentario", "Stock"};
+        String[] titulos = {"Codigo", "Producto", "Marca", "Medida", "Unidad Med.", "Serial", "Estado", "Comentario", "Stock"};
         String[] registros = new String[9];
 
         DefaultTableModel modelo = new DefaultTableModel(null, titulos);
@@ -121,7 +115,7 @@ public class IngresoMatTabla extends javax.swing.JFrame {
                 registros[2] = rs.getString("marca");
                 registros[3] = rs.getString("medida");
                 registros[4] = rs.getString("un");
-                registros[5] = rs.getString("serial");                
+                registros[5] = rs.getString("serial");
                 registros[6] = rs.getString("estado");
                 registros[7] = rs.getString("comentario");
                 registros[8] = rs.getString("stock");
@@ -281,7 +275,6 @@ public class IngresoMatTabla extends javax.swing.JFrame {
                 String producto = JTPañol.getValueAt(fila, 1).toString();
                 String medida = JTPañol.getValueAt(fila, 3).toString();
                 String marca = JTPañol.getValueAt(fila, 2).toString();
-                
 
                 int c = 0;
                 int j = 0;
@@ -289,32 +282,27 @@ public class IngresoMatTabla extends javax.swing.JFrame {
                 this.dispose();
                 if ((cant.equals("")) || (cant.equals("0"))) {
                     JOptionPane.showMessageDialog(this, "Debe ingresar algun valor mayor que 0");
-                }  else if (c == 0) {
-                            //esto datos caen en la tabla
+                } else if (c == 0) {
+                    //esto datos caen en la tabla
 
+                    dato[0] = codm; //codigoM
+                    dato[1] = recibido; //recibido
+                    dato[2] = fecha; //id
+                    dato[3] = producto; //producto
+                    dato[4] = medida;
+                    dato[5] = marca; //fecha
+                    dato[6] = cant; //Cantidad
 
-                            dato[0] = codm; //codigoM
-                            dato[1] = recibido; //recibido
-                            dato[2]= fecha; //id
-                           dato[3] = producto; //producto
-                           dato[4] = medida;
-                            dato[5] = marca; //fecha
-                            dato[6] = cant; //Cantidad
+                    tabladet.addRow(dato);
 
-                            tabladet.addRow(dato);
-
-                            NuevoIngreso.JTIngreso.setModel(tabladet);
-
-                        }
-                     
-                       
-                    }
+                    NuevoIngreso.JTIngreso.setModel(tabladet);
 
                 }
 
-            
-         catch (Exception e) {
-}
+            }
+
+        } catch (Exception e) {
+        }
 
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -324,8 +312,8 @@ public class IngresoMatTabla extends javax.swing.JFrame {
     }//GEN-LAST:event_TxtBusquedaKeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       TxtBusqueda.setText("");
-       mostrarDatos();  
+        TxtBusqueda.setText("");
+        mostrarDatos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void TxtBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtBusquedaActionPerformed

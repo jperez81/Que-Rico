@@ -1,5 +1,10 @@
 package Metodos;
 
+
+/**
+ *
+ * @author José Pérez
+ */
 import java.awt.Component;
 import javax.swing.JButton;
 import javax.swing.JTable;

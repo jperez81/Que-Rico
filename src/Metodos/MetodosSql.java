@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Metodos;
 
 import java.sql.Connection;
@@ -22,8 +17,6 @@ public class MetodosSql {
     public static ResultSet resultado;//esto va a ser el resultado de las consulta que realicemos
     public static String sql;//
     public static int resultado_numero = 0;
-
- 
 
     public int guardar(int cod, String nombre, String apellido, String usuario, String contraseña, String JCSector) { //METODO PARA GUARDAR DATOS DE LA TABLA USUARIOS
         int resultado = 0;
@@ -80,7 +73,6 @@ public class MetodosSql {
 //        return resultado; //RETORNO DE VALORES DE LA SENTENCIA GUARDAR
 //
 //    }
-
 //    public int guardarChofer(int cod, String nombre, String apellido, String dni, String direccion, String telcel, String dominio, String marca, String modelo, String combustible, String dueño, String observacion, String estado) { //METODO PARA GUARDAR DATOS DE LA TABLA USUARIOS
 //        int resultado = 0;
 //        Connection conexion = null;
@@ -113,7 +105,6 @@ public class MetodosSql {
 //        return resultado; //RETORNO DE VALORES DE LA SENTENCIA GUARDAR
 //
 //    }
-
 //    public int guardarClientes(int cod, String nombre, String apellido, String dni, String direccion, String ecalle, String telefono, String celular, String observaciones) { //METODO PARA GUARDAR DATOS DE LA TABLA CLientes
 //        int resultado = 0;
 //        Connection conexion = null;
@@ -144,7 +135,6 @@ public class MetodosSql {
 //        return resultado; //RETORNO DE VALORES DE LA SENTENCIA GUARDAR
 //
 //    }
-
     public String buscarNombre(String usuario) { //METODO PARA BUSCAR NOMBRE EN LA BASE DE DATOS POR MEDIO DE SU CORREO
         String busqueda_nombre = null;
         Connection conexion = null;

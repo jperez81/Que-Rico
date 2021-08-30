@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Fomularios;
-
 
 import static Fomularios.Panel_Manteniento.TxtOt;
 import static Fomularios.Panel_Produccion.fechaact;
@@ -36,29 +30,29 @@ public class GenerarOD extends javax.swing.JFrame {
      */
     public GenerarOD() {
         initComponents();
-      
+
         etiqueta();
         TxtFecha.setText(fechaact());
-       
+
         setLocationRelativeTo(null);
-     
+
     }
-     public static String fechaact() {
+
+    public static String fechaact() {
         Date fecha = new Date();
         SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
         return formatofecha.format(fecha);
-        
+
     }
     MetodosSql Met = new MetodosSql();
     ConexionBD cc = new ConexionBD();
     Connection con = ConexionBD.conectar();
-    
+
 //     public void TrabajoCerrado1(){
 //    
 //        JTDinamica.getColumnModel().getColumn(8).setCellRenderer(new ViajeCerrado());
 //    
 //     }
-   
     public void codigos() {
         // Metodo para generar codigos automanticamente desde la clase GenerarCodigos     
         int j;
@@ -75,36 +69,38 @@ public class GenerarOD extends javax.swing.JFrame {
             if (rs.next()) {
                 num = rs.getString(1);
             }
-            
+
             if (num == null) {
                 TxtOt.setText("00001");
             }
-            
+
             j = Integer.parseInt(num);
             GenerarCodigos gen = new GenerarCodigos();
             gen.generar(j);
             TxtOt.setText(0000 + gen.serie());
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Panel_Produccion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     public void etiqueta() {
+
+    public void etiqueta() {
         //Este metodo sirve para capturar etiquetas de otro frame y mostrarla
         String x;
         x = Portal.LblNombreP.getText();
         LblNombreP.setText(x);
     }
-     public void insertarDatos() {
-        
+
+    public void insertarDatos() {
+
         try {
             String SQL = "INSERT INTO querico.ordenes (ot,solicitante,fecha,sector,detalle,prioridad,estado)VALUES (?,?,?,?,?,?,?)";
             PreparedStatement pst = con.prepareStatement(SQL);
-            
+
             pst.setString(1, TxtOt.getText());
             pst.setString(2, LblNombreP.getText());
             pst.setString(3, TxtFecha.getText());
-            int seleccionado1 = JCSector.getSelectedIndex();            
+            int seleccionado1 = JCSector.getSelectedIndex();
             pst.setString(4, JCSector.getItemAt(seleccionado1));
             pst.setString(5, TxtDetalle.getText());
             int seleccionado = JCPrioridad.getSelectedIndex();
@@ -113,22 +109,20 @@ public class GenerarOD extends javax.swing.JFrame {
             pst.setString(7, JCestado.getItemAt(seleccionado2));
             pst.execute();
             JOptionPane.showMessageDialog(null, "Datos enviados para su proceso");
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error en CONEXION " + e.getMessage());
-            
+
         }
     }
-     
-     public void EliminarRegistros() { //metodo corto para eliminar y funciona
+
+    public void EliminarRegistros() { //metodo corto para eliminar y funciona
         try {
             String SQL = " delete from querico.ordenesd where ot= ?";
-           
+
             PreparedStatement pst = con.prepareStatement(SQL);
-            
-            
+
             pst.setString(1, TxtOt.getText());
-           
 
             pst.execute();
             JOptionPane.showMessageDialog(null, "Registro eliminado con exito. ");
@@ -138,9 +132,6 @@ public class GenerarOD extends javax.swing.JFrame {
 
         }
     }
-     
-     
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -374,16 +365,15 @@ public class GenerarOD extends javax.swing.JFrame {
     }//GEN-LAST:event_TxtFechaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     insertarDatos(); 
-     JOptionPane.showMessageDialog(null, "Datos enviados para su proceso");
-     this.dispose();
+        insertarDatos();
+        JOptionPane.showMessageDialog(null, "Datos enviados para su proceso");
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      dispose();
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-   
     /**
      * @param args the command line arguments
      */

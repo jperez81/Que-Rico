@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Fomularios;
 
 /**
@@ -10,9 +6,10 @@ package Fomularios;
  * @author José Pérez
  */
 public class EntradaF {
- private String hoja;
- private String cod;
- private String recibido;
+
+    private String hoja;
+    private String cod;
+    private String recibido;
 
     public EntradaF(String hoja, String cod, String recibido) {
         this.hoja = hoja;
@@ -43,10 +40,5 @@ public class EntradaF {
     public void setRecibido(String recibido) {
         this.recibido = recibido;
     }
- 
- 
-   
-    
-   
-    
+
 }

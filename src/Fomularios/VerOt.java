@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Fomularios;
 
 import Metodos.ConexionBD;
@@ -23,7 +18,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author José Pérez
+ * @author José Pérez /
  */
 public class VerOt extends javax.swing.JFrame {
 
@@ -36,30 +31,28 @@ public class VerOt extends javax.swing.JFrame {
         Block();
     }
 
-    
-     MetodosSql Met = new MetodosSql();
+    MetodosSql Met = new MetodosSql();
     ConexionBD cc = new ConexionBD();
     Connection con = ConexionBD.conectar();
-    
-    public void Block(){
-    
-    TxtDetalle.setEditable(false);
-    TxtEstado.setEditable(false);
-    TxtFecha1.setEditable(false);
-    TxtFecha2.setEditable(false);
-    TxtFecha3.setEditable(false);
-    TxtMateriales.setEditable(false);
-    TxtObservacionResp.setEditable(false);
-    LblNombreP.setEnabled(false);
-    TxtObservaciones.setEditable(false);
-    Txtot.setEditable(false);
-    TxtPrioridad.setEditable(false);
-    TxtSector.setEditable(false);
-    TxtSectorDefinido.setEditable(false);
-    
-    
+
+    public void Block() {
+
+        TxtDetalle.setEditable(false);
+        TxtEstado.setEditable(false);
+        TxtFecha1.setEditable(false);
+        TxtFecha2.setEditable(false);
+        TxtFecha3.setEditable(false);
+        TxtMateriales.setEditable(false);
+        TxtObservacionResp.setEditable(false);
+        LblNombreP.setEnabled(false);
+        TxtObservaciones.setEditable(false);
+        Txtot.setEditable(false);
+        TxtPrioridad.setEditable(false);
+        TxtSector.setEditable(false);
+        TxtSectorDefinido.setEditable(false);
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -284,7 +277,7 @@ public class VerOt extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
- 
+
     private void TxtFecha1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtFecha1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtFecha1ActionPerformed
@@ -298,10 +291,9 @@ public class VerOt extends javax.swing.JFrame {
             String path = "C:\\NetBeansProjects\\QueRico\\src\\Reportes\\OT.jasper";
 
             JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
-            Map parametro = new HashMap();        
-                
-             parametro.put("ot", Txtot.getText());                  
+            Map parametro = new HashMap();
 
+            parametro.put("ot", Txtot.getText());
 
             JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, con);
 
@@ -312,13 +304,13 @@ public class VerOt extends javax.swing.JFrame {
             view.setVisible(true);
         } catch (JRException ex) {
             Logger.getLogger(VerOt.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error" +ex);
+            JOptionPane.showMessageDialog(null, "Error" + ex);
         }
 
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     /**

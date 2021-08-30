@@ -4,7 +4,7 @@ package Fomularios;
 import Metodos.ConexionBD;
 import Metodos.MetodosSql;
 
-//import Reportes.ResultadoE;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;

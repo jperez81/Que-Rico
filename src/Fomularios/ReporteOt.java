@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Fomularios;
 
 import Metodos.ConexionBD;
@@ -553,7 +548,7 @@ public class ReporteOt extends javax.swing.JFrame {
             if (JCEstados.getSelectedItem().equals("Otros")) {
 
                 consulta = "SELECT * FROM querico.ordenesp WHERE estado='Otros' AND fecha  BETWEEN '" + fec1 + "' AND '" + fec2 + "' ";
-            } 
+            }
             String[] titulos = {"Num OT", "Solicitante", "Fecha", "Sector", "Detalle trabajo", "Prioridad", "Estado Solicitud", "Inicio", "Tipo trabajo", "Materiales", "Obs Responsable", "Estado", "Cierre"};
             String[] registros = new String[13];
             DefaultTableModel tabla = new DefaultTableModel(null, titulos);
@@ -896,7 +891,6 @@ public class ReporteOt extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Error al monstrar el mensaje" + e);
             }
 
-            
         }
     }//GEN-LAST:event_BtnBuscar2ActionPerformed
 

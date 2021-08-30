@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Fomularios;
 
 import static Fomularios.TratamientoOT.JTOt;
@@ -35,53 +30,57 @@ public class NuevaOrden extends javax.swing.JPanel {
         initComponents();
         mostrarDatos();
         mostrarDatos1();
-         TxtFecha.setText(fechaact());
-                 block();
+        TxtFecha.setText(fechaact());
+        block();
         TrabajoCerrado1();
         TrabajoCerrado3();
-         
+
     }
 
-   MetodosSql Met = new MetodosSql();
+    MetodosSql Met = new MetodosSql();
     ConexionBD cc = new ConexionBD();
     Connection con = ConexionBD.conectar();
-    
+
     public void TrabajoCerrado1() {
-        
+
         JTOtt.getColumnModel().getColumn(11).setCellRenderer(new ViajeCerrado());
-        
+
     }
-     public void TrabajoCerrado2() {
+
+    public void TrabajoCerrado2() {
 
         JTOt.getColumnModel().getColumn(6).setCellRenderer(new ViajeCerrado());
 
     }
-     public void TrabajoCerrado3() {
+
+    public void TrabajoCerrado3() {
 
         JTOt.getColumnModel().getColumn(6).setCellRenderer(new ViajeCerrado());
-      
+
     }
-        public void etiqueta() {
+
+    public void etiqueta() {
         //Este metodo sirve para capturar etiquetas de otro frame y mostrarla
         String x;
         x = Portal.LblNombreP.getText();
         LblNombreP.setText(x);
     }
-            public void mostrarDatos1() {
+
+    public void mostrarDatos1() {
         //CON ESTE METODO MOSTRAMOS EL CONTENIDO DE LA TABLA
         String[] titulos = {"Num OT", "Solicitante", "Fecha", "Sector", "Detalle trabajo", "Prioridad", "Estado Solicitud", "Inicio", "Tipo Trabajo", "Materiales", "Obs Responsable", "Estado", "Cierre"};
         String[] registros = new String[13];
-        
+
         DefaultTableModel modelo = new DefaultTableModel(null, titulos);
-        
+
         String SQL = "SELECT * FROM querico.ordenesp";
-        
+
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(SQL);
-            
+
             while (rs.next()) {
-                
+
                 registros[0] = rs.getString("ot");
                 registros[1] = rs.getString("solicitante");
                 registros[2] = rs.getString("fecha");
@@ -95,52 +94,47 @@ public class NuevaOrden extends javax.swing.JPanel {
                 registros[10] = rs.getString("obs_resp");
                 registros[11] = rs.getString("estado");
                 registros[12] = rs.getString("f_cierre");
-                
+
                 modelo.addRow(registros);
-                
+
             }
             JTOtt.setModel(modelo);
             TrabajoCerrado1();
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al monstrar el mensaje" + e);
         }
     }
-        
-        
-        public void block() {
+
+    public void block() {
         TxtOt.setEnabled(false);
         LblNombreP.setEnabled(false);
-        
+
     }
 
     public static String fechaact() {
         Date fecha = new Date();
         SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
         return formatofecha.format(fecha);
-        
+
     }
-    
-  
-    
-  
-    
+
     public void FiltrarDatos(String valor) {
         //CON ESTE METODO PODEMOS FLITRAR BUSQUEDAS ESPECIFICAS
         String[] titulos = {"Num OT", "Solicitante", "Fecha", "Sector", "Detalle trabajo", "Prioridad", "Estado Solicitud"};
         String[] registros = new String[7];
-        
+
         DefaultTableModel modelo = new DefaultTableModel(null, titulos);
 
 //        String SQL = "SELECT * FROM labarrera.clientes WHERE CONCAT(cod,nombre,apellido,dni,direccion,ncalle,ecalle,telefono,celular,observaciones) LIKE '%" + valor + "%'";
         String SQL = "SELECT * FROM querico.ordenes WHERE CONCAT(ot,solicitante,fecha,detalle,prioridad) LIKE '%" + valor + "%'";
-        
+
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(SQL);
-            
+
             while (rs.next()) {
-                
+
                 registros[0] = rs.getString("ot");
                 registros[1] = rs.getString("solicitante");
                 registros[2] = rs.getString("fecha");
@@ -148,34 +142,34 @@ public class NuevaOrden extends javax.swing.JPanel {
                 registros[4] = rs.getString("detalle");
                 registros[5] = rs.getString("prioridad");
                 registros[6] = rs.getString("estado");
-                
+
                 modelo.addRow(registros);
-                
+
             }
             JTOt.setModel(modelo);
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al monstrar el mensaje" + e);
         }
-        
+
     }
-    
-        public void Filtro1(String valor) {
+
+    public void Filtro1(String valor) {
         //CON ESTE METODO PODEMOS FLITRAR BUSQUEDAS ESPECIFICAS
         String[] titulos = {"Num OT", "Solicitante", "Fecha", "Sector", "Detalle trabajo", "Prioridad", "Estado Solicitud", "Inicio", "Tipo Trabajo", "Materiales", "Obs Responsable", "Estado", "Cierre"};
         String[] registros = new String[13];
-        
+
         DefaultTableModel modelo = new DefaultTableModel(null, titulos);
 
 //        String SQL = "SELECT * FROM labarrera.clientes WHERE CONCAT(cod,nombre,apellido,dni,direccion,ncalle,ecalle,telefono,celular,observaciones) LIKE '%" + valor + "%'";
         String SQL = "SELECT * FROM querico.ordenesp WHERE CONCAT(ot,solicitante,fecha,detalle,prioridad,f_inicio,materiales,estados,f_cierre) LIKE '%" + valor + "%'";
-        
+
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(SQL);
-            
+
             while (rs.next()) {
-                
+
                 registros[0] = rs.getString("ot");
                 registros[1] = rs.getString("solicitante");
                 registros[2] = rs.getString("fecha");
@@ -189,34 +183,34 @@ public class NuevaOrden extends javax.swing.JPanel {
                 registros[10] = rs.getString("obs_resp");
                 registros[11] = rs.getString("estado");
                 registros[12] = rs.getString("f_cierre");
-                
+
                 modelo.addRow(registros);
-                
+
             }
             JTOtt.setModel(modelo);
             TrabajoCerrado1();
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al monstrar el mensaje" + e);
         }
-        
+
     }
-    
-        public void mostrarDatos() {
+
+    public void mostrarDatos() {
         //CON ESTE METODO MOSTRAMOS EL CONTENIDO DE LA TABLA
         String[] titulos = {"Num OT", "Solicitante", "Fecha", "Sector", "Detalle trabajo", "Prioridad", "Estado"};
         String[] registros = new String[7];
-        
+
         DefaultTableModel modelo = new DefaultTableModel(null, titulos);
-        
+
         String SQL = "SELECT * FROM querico.ordenes";
-        
+
         try {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(SQL);
-            
+
             while (rs.next()) {
-                
+
                 registros[0] = rs.getString("ot");
                 registros[1] = rs.getString("solicitante");
                 registros[2] = rs.getString("fecha");
@@ -224,53 +218,53 @@ public class NuevaOrden extends javax.swing.JPanel {
                 registros[4] = rs.getString("detalle");
                 registros[5] = rs.getString("prioridad");
                 registros[6] = rs.getString("estado");
-                
+
                 modelo.addRow(registros);
-                
+
             }
             JTOt.setModel(modelo);
             TrabajoCerrado2();
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al monstrar el mensaje" + e);
         }
     }
-    
+
     public void insertarDatos() {
-        
+
         try {
             String SQL = "INSERT INTO querico.ordenes (ot,solicitante,fecha,sector,detalle,prioridad,estado)VALUES (?,?,?,?,?,?,?)";
             PreparedStatement pst = con.prepareStatement(SQL);
-            
+
             pst.setString(1, TxtOt.getText());
             pst.setString(2, LblNombreP.getText());
             pst.setString(3, TxtFecha.getText());
-            int seleccionado1 = JCSector.getSelectedIndex();            
+            int seleccionado1 = JCSector.getSelectedIndex();
             pst.setString(4, JCSector.getItemAt(seleccionado1));
             pst.setString(5, TxtDetalle.getText());
             int seleccionado = JCPrioridad.getSelectedIndex();
             pst.setString(6, JCPrioridad.getItemAt(seleccionado));
-           int seleccionado2 = JCEstado.getSelectedIndex();
+            int seleccionado2 = JCEstado.getSelectedIndex();
             pst.setString(7, JCEstado.getItemAt(seleccionado2));
             pst.execute();
             JOptionPane.showMessageDialog(null, "Datos enviados para su proceso");
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error en CONEXION " + e.getMessage());
-            
+
         }
     }
-    
+
     public void EditarDatos() {
-        
+
         try {
             String SQL = "UPDATE querico.ordenes SET solicitante=?, fecha=?, sector=?, detalle=?, prioridad=?, estado=? WHERE ot=?";
-            
+
             PreparedStatement pst = con.prepareStatement(SQL);
-            
+
             pst.setString(1, LblNombreP.getText());
             pst.setString(2, TxtFecha.getText());
-            int seleccionado1 = JCSector.getSelectedIndex();            
+            int seleccionado1 = JCSector.getSelectedIndex();
             pst.setString(3, JCSector.getItemAt(seleccionado1));
             pst.setString(4, TxtDetalle.getText());
             int seleccionado = JCPrioridad.getSelectedIndex();
@@ -281,49 +275,48 @@ public class NuevaOrden extends javax.swing.JPanel {
             pst.execute();
             JOptionPane.showMessageDialog(null, "Registro editado con exito. ");
             limpiarCajas();
-           
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al intentar editar los datos.  " + e.getMessage());
-            
+
         }
-        
+
     }
-    
-          public void EliminarRegistros1() { //metodo corto para eliminar y funciona
+
+    public void EliminarRegistros1() { //metodo corto para eliminar y funciona
         try {
-            
+
             String SQL = " delete from querico.ordenesp where ot= ?";
             PreparedStatement pst = con.prepareStatement(SQL);
-            
+
             pst.setString(1, TxtOt.getText());
-            
+
             pst.execute();
             JOptionPane.showMessageDialog(null, "Registro eliminado con exito. ");
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al intentar Borrar los datos.  " + e.getMessage());
-            
-        }
-    }
-              public void EliminarRegistros() { //metodo corto para eliminar y funciona
-        try {
-            
-            String SQL = " delete from querico.ordenes where ot= ?";
-            PreparedStatement pst = con.prepareStatement(SQL);
-            
-            pst.setString(1, TxtOt.getText());
-            
-            pst.execute();
-            JOptionPane.showMessageDialog(null, "Registro eliminado con exito. ");
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al intentar Borrar los datos.  " + e.getMessage());
-            
+
         }
     }
 
-    
+    public void EliminarRegistros() { //metodo corto para eliminar y funciona
+        try {
+
+            String SQL = " delete from querico.ordenes where ot= ?";
+            PreparedStatement pst = con.prepareStatement(SQL);
+
+            pst.setString(1, TxtOt.getText());
+
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Registro eliminado con exito. ");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al intentar Borrar los datos.  " + e.getMessage());
+
+        }
+    }
+
     public void codigos() {
         // Metodo para generar codigos automanticamente desde la clase GenerarCodigos     
         int j;
@@ -340,21 +333,21 @@ public class NuevaOrden extends javax.swing.JPanel {
             if (rs.next()) {
                 num = rs.getString(1);
             }
-            
+
             if (num == null) {
                 TxtOt.setText("00001");
             }
-            
+
             j = Integer.parseInt(num);
             GenerarCodigos gen = new GenerarCodigos();
             gen.generar(j);
             TxtOt.setText(0000 + gen.serie());
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Panel_Produccion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void limpiarCajas() {
         TxtOt.setText("");
         LblNombreP.setText("");
@@ -362,8 +355,9 @@ public class NuevaOrden extends javax.swing.JPanel {
         TxtDetalle.setText("");
         JCPrioridad.setSelectedItem(null);
         JCEstado.setSelectedItem(null);
-        
+
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -408,6 +402,8 @@ public class NuevaOrden extends javax.swing.JPanel {
         jLabel17 = new javax.swing.JLabel();
         jCheckCerrradas = new javax.swing.JCheckBox();
         jCheckProceso = new javax.swing.JCheckBox();
+
+        setPreferredSize(new java.awt.Dimension(922, 601));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -506,22 +502,8 @@ public class NuevaOrden extends javax.swing.JPanel {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(LblNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(274, 274, 274)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(TxtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -538,53 +520,52 @@ public class NuevaOrden extends javax.swing.JPanel {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jScrollPane5))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JCSector, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JCEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(BtnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                            .addComponent(BtnEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(256, 256, 256)
-                                .addComponent(BtnVer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(JCSector, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(JCEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnEdicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-                    .addComponent(BtnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                            .addComponent(BtnEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtnVer, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(LblNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(274, 274, 274)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(TxtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jButton1))
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel8)
+                        .addComponent(LblNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(JCSector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)
+                        .addComponent(TxtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(BtnEnviar)
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnEliminar)
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnEdicion)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BtnLimpiar)
-                            .addComponent(BtnVer)))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel1)
-                                .addComponent(jButton1))
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel8)
-                                .addComponent(LblNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3)
-                                .addComponent(JCSector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4)
-                                .addComponent(TxtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(15, 15, 15)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel2)
@@ -593,12 +574,22 @@ public class NuevaOrden extends javax.swing.JPanel {
                             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(JCPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel6)
-                                .addComponent(JCEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
+                                .addComponent(JCEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(BtnEnviar)))
+                        .addGap(18, 18, Short.MAX_VALUE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(7, Short.MAX_VALUE))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(BtnEdicion)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BtnEliminar)
+                            .addComponent(BtnLimpiar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BtnVer)
+                        .addContainerGap(12, Short.MAX_VALUE))))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -737,7 +728,7 @@ public class NuevaOrden extends javax.swing.JPanel {
                 .addComponent(jCheckProceso)
                 .addGap(30, 30, 30)
                 .addComponent(jCheckCerrradas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -761,39 +752,30 @@ public class NuevaOrden extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -809,13 +791,13 @@ public class NuevaOrden extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -873,23 +855,20 @@ public class NuevaOrden extends javax.swing.JPanel {
     }//GEN-LAST:event_BtnLimpiarActionPerformed
 
     private void JTOttMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTOttMouseClicked
-       
+
     }//GEN-LAST:event_JTOttMouseClicked
 
     private void JTOtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTOtMouseClicked
-       int filaSeleccionada = JTOtt.rowAtPoint(evt.getPoint());
+        int filaSeleccionada = JTOtt.rowAtPoint(evt.getPoint());
         TxtOt.setText(JTOtt.getValueAt(filaSeleccionada, 0).toString());
         LblNombreP.setText(JTOtt.getValueAt(filaSeleccionada, 1).toString());
         TxtFecha.setText(JTOtt.getValueAt(filaSeleccionada, 2).toString());
-       JCSector.setSelectedItem(JTOtt.getValueAt(filaSeleccionada, 3).toString());        
+        JCSector.setSelectedItem(JTOtt.getValueAt(filaSeleccionada, 3).toString());
         TxtDetalle.setText(JTOtt.getValueAt(filaSeleccionada, 4).toString());
         JCPrioridad.setSelectedItem(JTOtt.getValueAt(filaSeleccionada, 5).toString());
-        JCEstado.setSelectedItem(JTOtt.getValueAt(filaSeleccionada, 6).toString());  
-        
-           
-      
-    
-       
+        JCEstado.setSelectedItem(JTOtt.getValueAt(filaSeleccionada, 6).toString());
+
+
     }//GEN-LAST:event_JTOtMouseClicked
 
     private void TxtBuscar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtBuscar1KeyReleased
@@ -902,10 +881,10 @@ public class NuevaOrden extends javax.swing.JPanel {
     }//GEN-LAST:event_TxtBuscar2KeyReleased
 
     private void BtnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerActionPerformed
-         VerOt ven = new VerOt();
+        VerOt ven = new VerOt();
         ven.setVisible(true);
 
-        String ot ="";
+        String ot = "";
         String solicitante = "", fecha = "", sector = "", detalle = "", prioridad = "", estados = "", f_inicio = "", sector_def = "", materiales = "", obs_resp = "", estado = "", f_cierre = "";
         int filaseleccionada = JTOtt.getSelectedRow();
 
@@ -918,17 +897,16 @@ public class NuevaOrden extends javax.swing.JPanel {
             fecha = (String) JTOtt.getValueAt(filaseleccionada, 2);
             sector = (String) JTOtt.getValueAt(filaseleccionada, 3);
             detalle = (String) JTOtt.getValueAt(filaseleccionada, 4);
-            
+
             prioridad = (String) JTOtt.getValueAt(filaseleccionada, 5);
             estados = (String) JTOtt.getValueAt(filaseleccionada, 6);
-            f_inicio = (String) JTOtt.getValueAt(filaseleccionada,7);
+            f_inicio = (String) JTOtt.getValueAt(filaseleccionada, 7);
             sector_def = (String) JTOtt.getValueAt(filaseleccionada, 8);
             materiales = (String) JTOtt.getValueAt(filaseleccionada, 9);
             obs_resp = (String) JTOtt.getValueAt(filaseleccionada, 10);
             estado = (String) JTOtt.getValueAt(filaseleccionada, 11);
             f_cierre = (String) JTOtt.getValueAt(filaseleccionada, 12);
 
-            
             VerOt.Txtot.setText(ot);
             VerOt.LblNombreP.setText(solicitante);
             VerOt.TxtFecha1.setText(fecha);
@@ -942,145 +920,141 @@ public class NuevaOrden extends javax.swing.JPanel {
             VerOt.TxtObservacionResp.setText(obs_resp);
             VerOt.TxtEstado.setText(estado);
             VerOt.TxtFecha3.setText(f_cierre);
-            
 
         }
     }//GEN-LAST:event_BtnVerActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-      if(jCheckBox1.isSelected()){
-        
-             String consulta = "";
-             
-             consulta = "SELECT * FROM querico.ordenes WHERE estado='Solicitada'";
-             String[] titulos = {"Num OT", "Solicitante", "Fecha", "Sector", "Detalle trabajo", "Prioridad", "Solicitud"};
+        if (jCheckBox1.isSelected()) {
+
+            String consulta = "";
+
+            consulta = "SELECT * FROM querico.ordenes WHERE estado='Solicitada'";
+            String[] titulos = {"Num OT", "Solicitante", "Fecha", "Sector", "Detalle trabajo", "Prioridad", "Solicitud"};
             String[] registros = new String[7];
 
-        DefaultTableModel modelo = new DefaultTableModel(null, titulos);
+            DefaultTableModel modelo = new DefaultTableModel(null, titulos);
 
+            try {
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(consulta);
 
-        try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(consulta);
+                while (rs.next()) {
 
-            while (rs.next()) {
+                    registros[0] = rs.getString("ot");
+                    registros[1] = rs.getString("solicitante");
+                    registros[2] = rs.getString("fecha");
+                    registros[3] = rs.getString("sector");
+                    registros[4] = rs.getString("detalle");
+                    registros[5] = rs.getString("prioridad");
+                    registros[6] = rs.getString("estado");
 
-                registros[0] = rs.getString("ot");
-                registros[1] = rs.getString("solicitante");
-                registros[2] = rs.getString("fecha");
-                registros[3] = rs.getString("sector");
-                registros[4] = rs.getString("detalle");
-                registros[5] = rs.getString("prioridad");
-                registros[6] = rs.getString("estado");
+                    modelo.addRow(registros);
 
-                modelo.addRow(registros);
+                }
+                JTOt.setModel(modelo);
+                TrabajoCerrado3();
 
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al monstrar el mensaje" + e);
             }
-            JTOt.setModel(modelo);
-            TrabajoCerrado3();
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al monstrar el mensaje" + e);
-        }
-        
-        }else{
-        mostrarDatos();
+        } else {
+            mostrarDatos();
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jCheckProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckProcesoActionPerformed
-        if(jCheckProceso.isSelected()){
+        if (jCheckProceso.isSelected()) {
             jCheckCerrradas.setEnabled(false);
-             String consulta = "";
-             
-             consulta = "SELECT * FROM querico.ordenesp WHERE estado='Proceso'";
-             String[] titulos = {"Num OT", "Solicitante", "Fecha", "Sector", "Detalle trabajo", "Prioridad", "Estado Solicitud", "Inicio", "Tipo Trabajo", "Materiales", "Obs Responsable", "Estado", "Cierre"};
+            String consulta = "";
+
+            consulta = "SELECT * FROM querico.ordenesp WHERE estado='Proceso'";
+            String[] titulos = {"Num OT", "Solicitante", "Fecha", "Sector", "Detalle trabajo", "Prioridad", "Estado Solicitud", "Inicio", "Tipo Trabajo", "Materiales", "Obs Responsable", "Estado", "Cierre"};
             String[] registros = new String[13];
 
-        DefaultTableModel modelo = new DefaultTableModel(null, titulos);
+            DefaultTableModel modelo = new DefaultTableModel(null, titulos);
 
+            try {
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(consulta);
 
-        try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(consulta);
+                while (rs.next()) {
 
-            while (rs.next()) {
+                    registros[0] = rs.getString("ot");
+                    registros[1] = rs.getString("solicitante");
+                    registros[2] = rs.getString("fecha");
+                    registros[3] = rs.getString("sector");
+                    registros[4] = rs.getString("detalle");
+                    registros[5] = rs.getString("prioridad");
+                    registros[6] = rs.getString("estados");
+                    registros[7] = rs.getString("f_inicio");
+                    registros[8] = rs.getString("sector_def");
+                    registros[9] = rs.getString("materiales");
+                    registros[10] = rs.getString("obs_resp");
+                    registros[11] = rs.getString("estado");
+                    registros[12] = rs.getString("f_cierre");
+                    modelo.addRow(registros);
 
-               registros[0] = rs.getString("ot");
-                registros[1] = rs.getString("solicitante");
-                registros[2] = rs.getString("fecha");
-                registros[3] = rs.getString("sector");
-                registros[4] = rs.getString("detalle");
-                registros[5] = rs.getString("prioridad");
-                registros[6] = rs.getString("estados");
-                registros[7] = rs.getString("f_inicio");
-                registros[8] = rs.getString("sector_def");
-                registros[9] = rs.getString("materiales");
-                registros[10] = rs.getString("obs_resp");
-                registros[11] = rs.getString("estado");
-                registros[12] = rs.getString("f_cierre");
-                modelo.addRow(registros);
+                }
+                JTOtt.setModel(modelo);
+                TrabajoCerrado1();
 
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al monstrar el mensaje" + e);
             }
-            JTOtt.setModel(modelo);
-            TrabajoCerrado1();
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al monstrar el mensaje" + e);
-        }
-        
-        }else{
-        mostrarDatos1();
-        jCheckCerrradas.setEnabled(true);
-        
+        } else {
+            mostrarDatos1();
+            jCheckCerrradas.setEnabled(true);
+
         }
     }//GEN-LAST:event_jCheckProcesoActionPerformed
 
     private void jCheckCerrradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckCerrradasActionPerformed
-         if(jCheckCerrradas.isSelected()){
-             jCheckProceso.setEnabled(false);
-        
-             String consulta = "";
-             
-             consulta = "SELECT * FROM querico.ordenesp WHERE estado='Cerrado'";
-             String[] titulos = {"Num OT", "Solicitante", "Fecha", "Sector", "Detalle trabajo", "Prioridad", "Estado Solicitud", "Inicio", "Tipo Trabajo", "Materiales", "Obs Responsable", "Estado", "Cierre"};
+        if (jCheckCerrradas.isSelected()) {
+            jCheckProceso.setEnabled(false);
+
+            String consulta = "";
+
+            consulta = "SELECT * FROM querico.ordenesp WHERE estado='Cerrado'";
+            String[] titulos = {"Num OT", "Solicitante", "Fecha", "Sector", "Detalle trabajo", "Prioridad", "Estado Solicitud", "Inicio", "Tipo Trabajo", "Materiales", "Obs Responsable", "Estado", "Cierre"};
             String[] registros = new String[13];
 
-        DefaultTableModel modelo = new DefaultTableModel(null, titulos);
+            DefaultTableModel modelo = new DefaultTableModel(null, titulos);
 
+            try {
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(consulta);
 
-        try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(consulta);
+                while (rs.next()) {
 
-            while (rs.next()) {
+                    registros[0] = rs.getString("ot");
+                    registros[1] = rs.getString("solicitante");
+                    registros[2] = rs.getString("fecha");
+                    registros[3] = rs.getString("sector");
+                    registros[4] = rs.getString("detalle");
+                    registros[5] = rs.getString("prioridad");
+                    registros[6] = rs.getString("estados");
+                    registros[7] = rs.getString("f_inicio");
+                    registros[8] = rs.getString("sector_def");
+                    registros[9] = rs.getString("materiales");
+                    registros[10] = rs.getString("obs_resp");
+                    registros[11] = rs.getString("estado");
+                    registros[12] = rs.getString("f_cierre");
+                    modelo.addRow(registros);
 
-               registros[0] = rs.getString("ot");
-                registros[1] = rs.getString("solicitante");
-                registros[2] = rs.getString("fecha");
-                registros[3] = rs.getString("sector");
-                registros[4] = rs.getString("detalle");
-                registros[5] = rs.getString("prioridad");
-                registros[6] = rs.getString("estados");
-                registros[7] = rs.getString("f_inicio");
-                registros[8] = rs.getString("sector_def");
-                registros[9] = rs.getString("materiales");
-                registros[10] = rs.getString("obs_resp");
-                registros[11] = rs.getString("estado");
-                registros[12] = rs.getString("f_cierre");
-                modelo.addRow(registros);
+                }
+                JTOtt.setModel(modelo);
+                TrabajoCerrado1();
 
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al monstrar el mensaje" + e);
             }
-            JTOtt.setModel(modelo);
-            TrabajoCerrado1();
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al monstrar el mensaje" + e);
-        }
-        
-        }else{
-        mostrarDatos1();
-        jCheckProceso.setEnabled(true);
+        } else {
+            mostrarDatos1();
+            jCheckProceso.setEnabled(true);
         }
     }//GEN-LAST:event_jCheckCerrradasActionPerformed
 

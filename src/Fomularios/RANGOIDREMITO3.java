@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Fomularios;
 
 import Metodos.ConexionBD;
@@ -32,9 +27,10 @@ public class RANGOIDREMITO3 extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
- MetodosSql Met = new MetodosSql();
+    MetodosSql Met = new MetodosSql();
     ConexionBD cc = new ConexionBD();
     Connection con = ConexionBD.conectar();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -203,7 +199,7 @@ public class RANGOIDREMITO3 extends javax.swing.JFrame {
             JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
             Map parametros = new HashMap();
 
-            parametros.put("id",TxtId.getText() );
+            parametros.put("id", TxtId.getText());
 
             JasperPrint jprint = JasperFillManager.fillReport(reporte, parametros, con);
 

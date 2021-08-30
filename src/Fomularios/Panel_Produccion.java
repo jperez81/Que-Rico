@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Fomularios;
 
 import Metodos.ConexionBD;
@@ -445,7 +440,7 @@ public class Panel_Produccion extends javax.swing.JPanel {
     }//GEN-LAST:event_BtnFaenaActionPerformed
 
     private void BtnBalanzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBalanzaActionPerformed
-       if (BtnBalanza.isSelected()) {
+        if (BtnBalanza.isSelected()) {
 
             pnl_vista_principal1.add(planilla, "Planilla");
             vistac.show(pnl_vista_principal1, "Planilla");

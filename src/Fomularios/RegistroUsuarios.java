@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Fomularios;
 
 import Metodos.ConexionBD;
@@ -320,7 +315,6 @@ public final class RegistroUsuarios extends javax.swing.JFrame {
 //        ImageIcon icon_Formulario = new ImageIcon(url);
 //        setIconImage(icon_Formulario.getImage());
 //    }
-
     public void mostrarDatos() {
         //CON ESTE METODO MOSTRAMOS EL CONTENIDO DE LA TABLA
         String[] titulos = {"Cod.", "Nombre", "Apellido", "Usuario", "Contraseña", "Sector"};
@@ -353,6 +347,7 @@ public final class RegistroUsuarios extends javax.swing.JFrame {
         }
 
     }
+
     public void EliminarRegistros() { //metodo corto para eliminar y funciona
         try {
             String SQL = " delete from querico.usuario where cod= ?";
@@ -369,6 +364,7 @@ public final class RegistroUsuarios extends javax.swing.JFrame {
 
         }
     }
+
     public void EditarDatos() {
 
         try {
@@ -393,6 +389,7 @@ public final class RegistroUsuarios extends javax.swing.JFrame {
         }
 
     }
+
     public void limpiarCajas() {
         TxtCod.setText("");
         TxtNombre.setText("");
@@ -546,7 +543,7 @@ public final class RegistroUsuarios extends javax.swing.JFrame {
 
     private void BtnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistroActionPerformed
 
-      codigos();
+        codigos();
 
     }//GEN-LAST:event_BtnRegistroActionPerformed
 
